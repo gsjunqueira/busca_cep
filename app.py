@@ -3,9 +3,13 @@
 import streamlit as st
 import requests
 
-def busca_cep(cep):
-    resposta = requests.get(f"https://viacep.com.br/ws/{cep}/json/")
-    return resposta
+def busca_cep(c_e_p):
+    """ Função para buscar o CEP"""
+    try:
+        return requests.get(f"https://viacep.com.br/ws/{c_e_p}/json/", timeout=10)
+    except ImportError:
+        return False
+
 
 st.set_page_config(page_title="Busca CEP", page_icon='📭')
 st.title('Sistema de busca de CEP')
